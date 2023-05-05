@@ -1,0 +1,92 @@
+Terra Asset Management System
+
+Problem Statement :
+OBJECTIVE: Create an asset management system + dashboard that allows for
+uploading assets and then accessing them later via an API.
+API FEATURES :
+
+1. CRUD APIs for the assets
+2. Create - Upload folder full of images to S3 (images should be inside folder in
+S3 also) and create a collection of documents inside MongoDB
+3. Read - Show all assets in DB
+4. Update - API to update the asset document
+5. Delete - should be a soft delete
+6. Enabling task - Create a document for the project (how APIs are being hit,how
+the object for Asset looks, etc.). Assume proper Data types
+
+FE Dashboard:
+
+1. Basic Login Page
+2. Read - Grid view of all images (fetched via our API)
+
+
+Introduction
+This document outlines the API endpoints and their functionalities for Terra Asset Management System with JWT authentication. The API allows users to perform CRUD operations on a Asset[Image] and authenticate using JWT tokens.
+
+Authentication Endpoints
+The following endpoints are used for user authentication using JWT tokens.
+
+POST /auth/register
+This endpoint is used for registering a new user.
+
+Request Parameters
+email (string): the email address of the user [REQUIRED]
+password (string): the password for the user's account [REQUIRED]
+
+Response
+200 OK: User is registered successfully
+
+POST /auth/login
+This endpoint is used for logging in a user and obtaining a JWT token.
+
+Request Parameters
+email (string): the email address of the user [REQUIRED]
+password (string): the password for the user's account [REQUIRED]
+
+Response
+200 OK: JWT token is generated successfully
+
+CRUD Endpoints
+The following endpoints are used for CRUD operations on the MongoDB Atlas DB.
+
+POST /api/upload
+This endpoint is used for uploading new data[Image] to the database.
+
+Request Parameters
+image (file): the data to be uploaded
+Response
+200 OK: Data is uploaded successfully
+
+PUT /api/update
+This endpoint is used for updating data[Image] in the database.
+
+Request Parameters
+AssetID (string): the ID of the data to be updated
+image (file): the new data to replace the old data
+Response
+200 OK: Data is updated successfully
+
+DELETE /api/delete/{id}
+This endpoint is used for soft deleting data from the database.
+
+Request Parameters
+AssetID (string): the ID of the data to be deleted
+Response
+200 OK: Data is deleted successfully
+
+GET /api/read
+This endpoint is used for retrieving Assets from the database.
+
+Request Parameters
+
+
+Response
+200 OK: Data is retrieved successfully
+
+JWT Authentication
+All CRUD endpoints require a valid JWT token in the Authorization header to be authenticated.
+
+Request Headers
+Authorization (string): JWT token for the user
+Response
+200 OK: User Authenicated Successfully
